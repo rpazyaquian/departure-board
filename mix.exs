@@ -20,7 +20,7 @@ defmodule DepartureBoard.Mixfile do
   def application do
     [
       mod: {DepartureBoard.Application, []},
-      extra_applications: [:logger, :runtime_tools, :httpoison]
+      extra_applications: [:logger, :runtime_tools, :httpoison, :nimble_csv]
     ]
   end
 
@@ -33,7 +33,7 @@ defmodule DepartureBoard.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:csv, "~> 2.0.0"},
+      {:nimble_csv, "~> 0.3"},
       {:httpoison, "~> 1.0"},
       {:phoenix, "~> 1.3.0"},
       {:phoenix_pubsub, "~> 1.0"},
