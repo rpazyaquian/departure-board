@@ -20,7 +20,7 @@ defmodule DepartureBoard.Mixfile do
   def application do
     [
       mod: {DepartureBoard.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :httpoison]
     ]
   end
 
@@ -33,6 +33,7 @@ defmodule DepartureBoard.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:httpoison, "~> 1.0"},
       {:phoenix, "~> 1.3.0"},
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_ecto, "~> 3.2"},
