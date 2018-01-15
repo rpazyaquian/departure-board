@@ -31,6 +31,6 @@ defmodule DepartureBoard.Fetcher do
         IO.inspect reason
     end
 
-    Process.send_after(self(), :get_data, :timer.seconds(60 * 3))
+    Process.send_after(self(), :get_data, (1000 * 60 * 3))  # 180 seconds / 3 min
   end
 end
