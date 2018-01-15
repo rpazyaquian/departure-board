@@ -1,11 +1,12 @@
 import React, {Component} from "react"
+import moment from "moment"
 
 import DepartureTable from "./departureTable.js"
 
 class DepartureBoard extends Component {
   constructor(props) {
     super(props)
-    this.state = { departures: [] }
+    this.state = { departures: [], lastUpdated: null }
   }
 
   componentDidMount() {
@@ -13,7 +14,8 @@ class DepartureBoard extends Component {
     let channel = this.props.channel
 
     channel.on("update", (data) => {
-      this.setState({departures: data.data})
+      let updateTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
+      this.setState({departures: data.data, lastUpdated: updateTime})
     })
 
     channel.join()
@@ -26,6 +28,7 @@ class DepartureBoard extends Component {
     return (
       <div>
         <h1>MBTA Departure Board</h1>
+        {this.state.lastUpdated ? <h4> Last Updated: {this.state.lastUpdated} </h4> : ''}
         {this.state.departures.length < 1 ? "Loading data..." : <DepartureTable departures={this.state.departures} />}
       </div>
     )
