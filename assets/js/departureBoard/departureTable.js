@@ -9,7 +9,7 @@ class DepartureTable extends Component {
 
   render() {
     return (
-      <table>
+      <table className="pure-table pure-table-bordered pure-table-striped">
         <thead>
           <tr>
             <th>TimeStamp</th>

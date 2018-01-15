@@ -25,6 +25,7 @@ class DepartureBoard extends Component {
     // NOTE: is there a nicer way to do this?
     return (
       <div>
+        <h1>MBTA Departure Board</h1>
         {this.state.departures.length < 1 ? "Loading data..." : <DepartureTable departures={this.state.departures} />}
       </div>
     )
