@@ -12,12 +12,10 @@ class DepartureTable extends Component {
       <table className="pure-table pure-table-bordered pure-table-striped">
         <thead>
           <tr>
-            <th>TimeStamp</th>
             <th>Origin</th>
             <th>Trip</th>
             <th>Destination</th>
             <th>Scheduled Time</th>
-            <th>Lateness</th>
             <th>Track</th>
             <th>Status</th>
           </tr>

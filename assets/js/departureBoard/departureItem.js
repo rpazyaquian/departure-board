@@ -1,14 +1,13 @@
 import React, {Component} from "react"
+import moment from "moment"
 
 const DepartureItem = ({departure}) => {
   return (
     <tr>
-      <td>{departure.timestamp}</td>
       <td>{departure.origin}</td>
       <td>{departure.trip}</td>
       <td>{departure.destination}</td>
-      <td>{departure.scheduled_time}</td>
-      <td>{departure.lateness}</td>
+      <td>{moment.unix(departure.scheduled_time).format("h:mmA")}</td>
       <td>{departure.track}</td>
       <td>{departure.status}</td>
     </tr>
