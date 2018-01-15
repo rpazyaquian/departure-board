@@ -1,9 +1,9 @@
 # worker for fetching the data on a particular period of time
 
+NimbleCSV.define(DepartureParser, separator: ",")
+
 defmodule DepartureBoard.Fetcher do
   use GenServer
-
-  alias NimbleCSV.RFC4180, as: CSV
 
   def start_link do
     GenServer.start_link(__MODULE__, [], name: __MODULE__)
@@ -21,7 +21,11 @@ defmodule DepartureBoard.Fetcher do
   defp get_data() do
     case HTTPoison.get("http://developer.mbta.com/lib/gtrtfs/Departures.csv") do
       {:ok, %HTTPoison.Response{body: body}} ->
-        CSV.parse_stream body
+        body
+        |> DepartureParser.parse_string
+        |> Enum.map(fn [timestamp, origin, trip, destination, scheduled_time, lateness, track, status] ->
+          %{timestamp: timestamp, origin: origin, trip: trip, destination: destination, scheduled_time: scheduled_time, lateness: lateness, track: track, status: status}
+        end)
         |> DepartureBoardWeb.DepartureChannel.update_data
       {:error, %HTTPoison.Error{reason: reason}} ->
         IO.inspect reason
