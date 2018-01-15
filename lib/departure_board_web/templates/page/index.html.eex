@@ -1,3 +1,1 @@
-<div id="departure-board">
-  <span>Loading data...</span>
-</div>
+<div id="departure-board"></div>
